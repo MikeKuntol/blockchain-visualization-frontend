@@ -7,6 +7,7 @@ import {
 import Home from "./pages/Home";
 import VisualGraph from "./pages/VisualGraph";
 import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
   const action = useNavigationType();
@@ -29,6 +30,14 @@ function App() {
         metaDescription = "";
         break;
       case "/visual-graph":
+        axios
+      .get("http://127.0.0.1:8000/graph_data")
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("There are errors:", error);
+      });
         title = "";
         metaDescription = "";
         break;
